@@ -10,6 +10,7 @@ description: Use when the user is preparing for a job search, exploring career t
 
 > **Author:** Mike Bengtson  
 > **Contact:** [mike.bengtson@gmail.com](mailto:mike.bengtson@gmail.com) · [X / @MHBengtson](https://x.com/mhbengtson) · [GitHub gist](https://gist.github.com/MikeBengtson)  
+> **Repository:** [github.com/MikeBengtson/job-search-superpower](https://github.com/MikeBengtson/job-search-superpower)  
 > **License:** MIT with attribution — see [LICENSE](./LICENSE)
 
 *An evidence-grounded prompt covering strategy, resume, LinkedIn, portfolio, cover letter, and action plan — for the job search you actually want to run.*
