@@ -1,0 +1,39 @@
+<svg width="1500" height="500" viewBox="0 0 1500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Job Search Superpower — Strategy, Resume, LinkedIn, Action Plan">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1d3a"/>
+      <stop offset="100%" stop-color="#1c2e4a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f5b942"/>
+      <stop offset="100%" stop-color="#e6913f"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1500" height="500" fill="url(#bg)"/>
+
+  <!-- decorative geometry -->
+  <circle cx="1320" cy="120" r="160" fill="#f5b942" opacity="0.06"/>
+  <circle cx="1240" cy="470" r="220" fill="#f5b942" opacity="0.04"/>
+  <circle cx="1380" cy="280" r="6" fill="#f5b942" opacity="0.6"/>
+  <circle cx="1410" cy="320" r="3" fill="#f5b942" opacity="0.4"/>
+  <circle cx="1350" cy="350" r="4" fill="#f5b942" opacity="0.5"/>
+  <rect x="1110" y="240" width="2" height="140" fill="#f5b942" opacity="0.25"/>
+
+  <!-- accent bar left of title -->
+  <rect x="100" y="170" width="8" height="110" fill="url(#accent)"/>
+
+  <!-- Title -->
+  <text x="135" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="74" font-weight="700" fill="#ffffff" letter-spacing="-1">Job Search Superpower</text>
+
+  <!-- Pipe-separated subtitle echoes the LinkedIn headline formula taught in the prompt -->
+  <text x="135" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="500" fill="#f5b942" letter-spacing="0.5">Strategy  |  Resume  |  LinkedIn  |  Action Plan</text>
+
+  <!-- Description -->
+  <text x="135" y="343" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" font-weight="300" fill="#cbd5e1">An evidence-grounded prompt for the job search</text>
+  <text x="135" y="378" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" font-weight="300" fill="#cbd5e1">you actually want to run.</text>
+
+  <!-- meta footer -->
+  <line x1="135" y1="425" x2="600" y2="425" stroke="#94a3b8" stroke-opacity="0.25" stroke-width="1"/>
+  <text x="135" y="455" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#94a3b8">Mike Bengtson  ·  MIT with attribution  ·  github.com/MikeBengtson</text>
+</svg>
