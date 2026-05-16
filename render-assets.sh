@@ -4,6 +4,7 @@
 # SVG natively (LinkedIn feed images, Twitter/X cards, most CMSes).
 #
 # Idempotent — safe to run multiple times. Produces 1x and @2x versions.
+# Outputs to ./assets/generated/ (gitignored — source of truth stays SVG).
 #
 # Detects the first available converter from: rsvg-convert, ImageMagick
 # (magick or convert), Inkscape. Install one of:
@@ -15,15 +16,18 @@
 #   ./render-assets.sh
 #
 # Output:
-#   assets/banner.png            (1500 x  500)
-#   assets/banner@2x.png         (3000 x 1000)
-#   assets/linkedin-card.png     (1200 x  627)
-#   assets/linkedin-card@2x.png  (2400 x 1254)
+#   assets/generated/banner.png            (1500 x  500)
+#   assets/generated/banner@2x.png         (3000 x 1000)
+#   assets/generated/linkedin-card.png     (1200 x  627)
+#   assets/generated/linkedin-card@2x.png  (2400 x 1254)
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ASSETS_DIR="$SCRIPT_DIR/assets"
+SOURCE_DIR="$SCRIPT_DIR/assets"
+OUTPUT_DIR="$SCRIPT_DIR/assets/generated"
+
+mkdir -p "$OUTPUT_DIR"
 
 if command -v rsvg-convert >/dev/null 2>&1; then
     TOOL="rsvg-convert"
@@ -73,16 +77,17 @@ convert_svg() {
 }
 
 echo "Using converter: $TOOL"
+echo "Output dir:      $OUTPUT_DIR"
 echo ""
 
-convert_svg "$ASSETS_DIR/banner.svg"        "$ASSETS_DIR/banner.png"            1500  500
-convert_svg "$ASSETS_DIR/banner.svg"        "$ASSETS_DIR/banner@2x.png"         3000 1000
-convert_svg "$ASSETS_DIR/linkedin-card.svg" "$ASSETS_DIR/linkedin-card.png"     1200  627
-convert_svg "$ASSETS_DIR/linkedin-card.svg" "$ASSETS_DIR/linkedin-card@2x.png"  2400 1254
+convert_svg "$SOURCE_DIR/banner.svg"        "$OUTPUT_DIR/banner.png"            1500  500
+convert_svg "$SOURCE_DIR/banner.svg"        "$OUTPUT_DIR/banner@2x.png"         3000 1000
+convert_svg "$SOURCE_DIR/linkedin-card.svg" "$OUTPUT_DIR/linkedin-card.png"     1200  627
+convert_svg "$SOURCE_DIR/linkedin-card.svg" "$OUTPUT_DIR/linkedin-card@2x.png"  2400 1254
 
-echo "  banner.png            1500 x  500"
-echo "  banner@2x.png         3000 x 1000"
-echo "  linkedin-card.png     1200 x  627"
-echo "  linkedin-card@2x.png  2400 x 1254"
+echo "  generated/banner.png            1500 x  500"
+echo "  generated/banner@2x.png         3000 x 1000"
+echo "  generated/linkedin-card.png     1200 x  627"
+echo "  generated/linkedin-card@2x.png  2400 x 1254"
 echo ""
-echo "Done. PNGs written to: $ASSETS_DIR"
+echo "Done."
