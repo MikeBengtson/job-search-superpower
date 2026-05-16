@@ -8,32 +8,82 @@
 
 ## ◆ What this is
 
-**Job Search Superpower** is a portable prompt — usable as a system prompt in any LLM, or as a Claude skill via the included YAML frontmatter — that walks a user through a complete, structured job-search workflow. It covers industry and role alignment, employment-type guidance, resume optimization or build-from-scratch, LinkedIn profile refinement or build-from-scratch, portfolio and cover-letter strategy, and a prioritized action plan with honest LinkedIn Premium vs. free ROI guidance. Every recommendation is grounded in current best practices, LinkedIn algorithm and recruiter behavior data, standard occupation taxonomies (NAICS / SOC / O\*NET in the US; ISCO / NOC / ANZSCO / SOC2020 elsewhere), and 21 role-family tunings spanning software, product, design, sales, customer success, marketing, technical writing, data, healthcare, legal, finance, government, academic-to-industry pivots, nonprofit, construction and trades, returners, recent grads, career changers, founder re-entry, executive search, and international candidates.
+**Job Search Superpower** is a portable prompt — usable as a system prompt in any LLM, or as a Claude skill via the included YAML frontmatter — that walks a user through a complete, structured job-search workflow.
+
+What it covers:
+
+- ▸ Industry and role alignment with hop-length classification (short / medium / long)
+- ▸ Employment-type guidance (FTE, contract, freelance, fractional, founding)
+- ▸ Resume optimization (Mode A) or build-from-scratch resume plan (Mode B)
+- ▸ LinkedIn profile refinement or build-from-scratch (Mode C — works as edit guide or template)
+- ▸ Portfolio and cover-letter strategy
+- ▸ Prioritized action plan with role-family-specific interview prep and compensation math
+- ▸ Honest LinkedIn Premium vs. free ROI guidance
+
+Grounded in:
+
+- ▸ Current LinkedIn algorithm and recruiter behavior data
+- ▸ Standard occupation taxonomies — NAICS / SOC / O\*NET (US); ISCO / NOC / ANZSCO / SOC2020 (international)
+- ▸ 21 role-family tunings — software, product, design, sales, customer success, marketing, technical writing, data, healthcare, legal, finance, government, academic-to-industry, nonprofit, construction/trades, returners, recent grads, career changers, founder re-entry, executive, international
 
 ## ▸ Structure, inputs, outputs
 
-**Inputs.** The user may supply any combination of: a resume or CV (pasted text, PDF, Word, plain text, Markdown), a structured-format export (JSON Resume schema, LinkedIn full data archive JSON, resume-parser output), a LinkedIn profile URL — handled via an opt-in lookup workflow that returns a numbered list of candidate matches the user confirms — a LinkedIn profile PDF export, steering notes (target industries, geography, comp floor, deal-breakers), or nothing at all (the prompt runs as a guided interview). When both a resume and LinkedIn are provided, the prompt uses both and explicitly flags any inconsistencies between them. **Outputs.** A single structured markdown report with named sections: Profile Summary, Skills / Experience / Interests Alignment, Employment Type and Logistics, Application Materials (resume + LinkedIn + portfolio + cover letter — mode-stacked based on what the user provided), Next Steps and Action Plan, and Sources and Caveats. The report is scannable — short paragraphs, bulleted lists, drafted text rather than abstract advice — and its length scales to the depth of intake.
+**Inputs** the user may supply (any combination, or nothing):
+
+- ▸ Resume or CV — pasted text, PDF, Word, plain text, Markdown
+- ▸ Structured-format export — JSON Resume schema, LinkedIn full data archive JSON, resume-parser output
+- ▸ LinkedIn profile URL — handled via an opt-in lookup workflow that returns a numbered list of candidate matches the user confirms
+- ▸ LinkedIn profile PDF export
+- ▸ Steering notes — target industries, geography, comp floor, deal-breakers
+- ▸ Nothing — the prompt runs as a guided interview
+
+When both a resume and LinkedIn are provided, the prompt uses both and explicitly flags any inconsistencies between them.
+
+**Outputs** — a single structured markdown report with these named sections:
+
+- ▸ Profile Summary
+- ▸ Skills / Experience / Interests Alignment
+- ▸ Employment Type and Logistics
+- ▸ Application Materials — resume + LinkedIn + portfolio + cover letter, mode-stacked based on what the user provided
+- ▸ Next Steps and Action Plan
+- ▸ Sources and Caveats
+
+The report is scannable — short paragraphs, bulleted lists, drafted text rather than abstract advice — and its length scales to the depth of intake.
 
 ## → How it works
 
-The assistant runs six steps in order: silently grounding itself in current best practices and LinkedIn platform conventions; conducting an adaptive intake interview with explicit stop-rules so it doesn't over-interrogate; aligning the user's background against industry and occupation taxonomies and ranking 3–6 strongest fits with hop-length classification (short / medium / long); matching employment type and geography to the user's stated preferences and constraints; producing mode-stacked application-material recommendations including a 12-subsection LinkedIn profile spec that works as either an edit guide or a build-from-scratch template; and delivering a prioritized, time-bound action plan that includes role-family-specific interview prep, compensation prep with total-comp math for transitions, bridge-work suggestions when the user signals urgency, and honest Premium ROI guidance. The file also contains an inactive **Further Refinement** section — wrapped in HTML comments, ready to activate when sanctioned LinkedIn data access becomes available — that specifies a complete back-testing methodology including outcome signals, cohort design, trajectory analysis, randomized A/B testing of the prompt's own recommendations, and disparate-impact auditing.
+The assistant runs six steps in order:
+
+1. **Internal grounding** — silently consolidates current best practices and LinkedIn platform conventions
+2. **Adaptive intake** — interview with explicit stop-rules so it doesn't over-interrogate
+3. **Alignment** — ranks 3–6 strongest industry/role fits with hop-length classification
+4. **Employment type and geography** — matches employment style and location to the user's stated preferences and constraints
+5. **Application materials** — mode-stacked recommendations including a 12-subsection LinkedIn profile spec
+6. **Next Steps and Action Plan** — prioritized, time-bound actions including bridge work, networking, materials, interview prep, compensation prep, and Premium ROI
+
+The file also contains an inactive **Further Refinement** section — wrapped in HTML comments, ready to activate when sanctioned LinkedIn data access becomes available — specifying:
+
+- ▸ Outcome signals and cohort design
+- ▸ Trajectory analysis (profile diffs in the 60–90 days before hire)
+- ▸ Randomized A/B testing of the prompt's own recommendations
+- ▸ Disparate-impact auditing
+- ▸ Mapping of every finding back to a named section of the prompt with a versioned changelog
 
 ---
 
 ## ⌘ Quick start
 
-**As a prompt:** copy the contents of [`job-search-superpower-prompt-skill.md`](./job-search-superpower-prompt-skill.md) into any LLM as a system prompt or first turn. The YAML frontmatter is harmless preamble for non-skill consumers.
-
-**As a Claude skill:** drop the file into `~/.claude/skills/job-search-superpower/SKILL.md` and Claude Code will auto-discover and activate it on relevant prompts.
+- **As a prompt:** copy the contents of [`job-search-superpower-prompt-skill.md`](./job-search-superpower-prompt-skill.md) into any LLM as a system prompt or first turn. The YAML frontmatter is harmless preamble for non-skill consumers.
+- **As a Claude skill:** drop the file into `~/.claude/skills/job-search-superpower/SKILL.md` and Claude Code will auto-discover and activate it on relevant prompts.
 
 ## ◇ Status and scope
 
-✓ Production-ready, 23-persona-tested, ~500 lines  
-✓ Covers 21 role families with industry-specific tuning  
-✓ Includes honest Premium-vs-free ROI guidance  
-✓ Title-integrity, freelance-consolidation, and disparate-impact guardrails  
-✗ Not legal, financial, immigration, or licensed career advice — flagged in-prompt  
-✗ Hiring-trend data is approximate — users directed to authoritative sources to verify
+- ✓ Production-ready, 23-persona-tested, ~500 lines
+- ✓ Covers 21 role families with industry-specific tuning
+- ✓ Includes honest Premium-vs-free ROI guidance
+- ✓ Title-integrity, freelance-consolidation, and disparate-impact guardrails
+- ✗ Not legal, financial, immigration, or licensed career advice — flagged in-prompt
+- ✗ Hiring-trend data is approximate — users directed to authoritative sources to verify
 
 ## ✦ License and attribution
 
