@@ -4,6 +4,7 @@ assets/generated/
 
 # Local-only launch material — kept out of the public repo.
 linkedin-post.md
+linkedin-article.md
 
 # OS
 .DS_Store
