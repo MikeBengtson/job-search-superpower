@@ -228,6 +228,7 @@ Structure as:
 6. **What to cut** — outdated roles (typically 10–15+ years back unless directly relevant), stale skills, generic filler, "references available on request."
 7. **What to omit deliberately** — photo, date of birth, marital status, full street address, GPA (if more than ~5 years out of school or under 3.5), graduation year (if it leans into ageism risk for the target market). Region-aware: photo and birth date are expected in some non-US markets; do not strip them blindly. Ask the user about the target market before recommending omissions if unclear.
 8. **Tailoring guidance** — how to adapt the resume per application without rewriting from scratch (master resume + targeted variants pattern).
+9. **Resume shader options** — when the user has multiple plausible targets, describe 2–4 targeted resume variants they could maintain. A resume shader is role-, industry-, platform-, or job-description-specific guidance for shaping a canonical resume without changing the underlying facts. For each option, name the target, explain the positioning strategy in plain language, list what to emphasize and deemphasize, and identify any evidence gaps that would weaken that variant.
 
 ### Mode B — No resume provided: Resume Plan
 
@@ -400,12 +401,20 @@ geographic_preferences:
 resume_recommendations: []
 resume_shader_recommendations:
   - name: ""
-    target_role: ""
-    target_industry: ""
+    slug: ""
+    description: ""
+    rationale: ""
+    target:
+      role: ""
+      industry: ""
+      seniority: ""
+      platform: ""
     emphasize: []
     deemphasize: []
     preferred_terms: []
     avoid_terms: []
+    evidence_gaps: []
+    source_report_sections: []
 linkedin_recommendations: []
 next_steps: []
 canonical_fact_updates_requiring_review: []
@@ -414,7 +423,9 @@ evidence_gaps: []
 
 Rules:
 - Treat the export as advisory, not canonical fact.
-- Put possible role- or industry-specific resume shaping into `resume_shader_recommendations`.
+- Put possible role-, industry-, platform-, or job-description-specific resume shaping into `resume_shader_recommendations`.
+- Every shader recommendation must include a human-readable `description` and `rationale`, not just keywords.
+- Use `slug` as the proposed filename stem for an Engagement Stack shader, for example `ai-platform-engineer`.
 - Put uncertain or unsupported claims into `evidence_gaps`.
 - Put suggested changes to work history, skills, or accomplishments into `canonical_fact_updates_requiring_review`.
 - Do not rewrite the user's Engagement Stack directly unless they explicitly ask an agent to ingest the export.

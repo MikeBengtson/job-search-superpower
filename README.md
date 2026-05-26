@@ -15,6 +15,7 @@ What it covers:
 - ▸ Industry and role alignment with hop-length classification (short / medium / long)
 - ▸ Employment-type guidance (FTE, contract, freelance, fractional, founding)
 - ▸ Resume optimization (Mode A) or build-from-scratch resume plan (Mode B)
+- ▸ Resume shader options for role-, industry-, platform-, or job-description-specific targeting
 - ▸ LinkedIn profile refinement or build-from-scratch (Mode C — works as edit guide or template)
 - ▸ Portfolio and cover-letter strategy
 - ▸ Prioritized action plan with role-family-specific interview prep and compensation math
@@ -80,9 +81,9 @@ The file also contains an inactive **Further Refinement** section — wrapped in
 When the user maintains an Engagement Stack Career OS, this prompt can emit an advisory handoff packet:
 
 - ▸ `job-search-report.md` — the human-readable strategy report
-- ▸ `job-search-export.yaml` — target roles, industries, employment preferences, resume recommendations, LinkedIn recommendations, evidence gaps, and resume-shader recommendations
+- ▸ `job-search-export.yaml` — target roles, industries, employment preferences, resume recommendations, LinkedIn recommendations, evidence gaps, and described resume-shader recommendations
 
-Engagement Stack can ingest that packet after user review, keeping the job-search prompt as the strategy surface and Engagement Stack as the durable source of truth.
+Engagement Stack can ingest that packet after user review, keeping the job-search prompt as the strategy surface and Engagement Stack as the durable source of truth. Shader recommendations include both structured targeting fields and human-readable descriptions so the user can decide which tailored resume variants are worth maintaining.
 
 ---
 
