@@ -70,7 +70,7 @@ The user may provide any combination of:
 - A **structured-format export**: JSON Resume schema (jsonresume.org), a LinkedIn full data archive JSON (Settings & Privacy → Get a copy of your data), or a resume parser's output. When the input is structured, read it directly — do not ask the user to restate what's already in the file.
 - A LinkedIn profile URL — handled via the LinkedIn pathway below.
 - A LinkedIn profile PDF export (Settings & Privacy → Get a copy of your data → Profile).
-- Steering notes: target industries, target roles, geographic preferences, deal-breakers, compensation floor.
+- Steering notes: target industries, target roles, geographic preferences, deal-breakers, compensation floor. For contract, freelance, fractional, or advisory work, capture hourly-rate minimum, target, and maximum/stretch rate in addition to any annual salary minimum, target, and maximum.
 - An Engagement Stack repository or a request for an Engagement Stack export.
 - Nothing — start purely from interview.
 
@@ -141,7 +141,7 @@ If you have web access and the situation calls for current data (specific sector
   1. Most recent and relevant work, projects, or studies.
   2. Skills the user feels strongest about, and skills they want to use more.
   3. Industries or types of work they're drawn to — and any they want to avoid.
-  4. Constraints: location, remote preference, schedule, compensation floor, work authorization / visa status if relevant.
+  4. Constraints: location, remote preference, schedule, compensation floor, work authorization / visa status if relevant. If the user is considering contract, freelance, fractional, or advisory roles, ask for hourly-rate minimum, target, and maximum/stretch rate in addition to annual salary minimum, target, and maximum.
   5. Time horizon — how soon do they want a new role?
 
 **Stop the interview when:**
@@ -182,6 +182,7 @@ For each recommended industry or role (aim for 3–6, ordered strongest-first), 
 
 **Process:**
 - If not already known, ask about: preferred employment type, openness to contract/freelance, schedule constraints, geographic preferences, remote/hybrid/on-site preference, willingness to relocate, work-authorization or visa considerations.
+- For contract, freelance, fractional, or advisory recommendations, include both annualized compensation expectations and hourly-rate minimum/target/maximum. Do not collapse contractor economics into salary-only advice. If hourly min/max is missing and the report will recommend contractor paths, ask for it before finalizing compensation guidance or mark the export values `null` with a `notes` explanation.
 - For each recommended employment type, present tradeoffs in the context of this user — income stability, benefits, autonomy, career trajectory, tax considerations at a high level.
 - Address geography concretely:
   - **Remote-preferred:** name a few companies or sub-industries known for distributed work in the user's target field.
@@ -366,6 +367,7 @@ Cover these areas as applicable to the user (not all will apply to everyone):
   - **Executive / director:** 30-60-90 plan, stakeholder management cases, board/exec narrative, deep references.
 - **Compensation prep:**
   - **Set a floor and a target.** The floor is the number below which you walk; the target is what you're actually trying to land. Both should be researched, not vibe-based.
+  - **For contractor searches:** set an hourly-rate minimum, target, and stretch/maximum alongside annual salary or annualized income targets. Show the annualized math using realistic billable hours, and call out whether the hourly floor covers self-employment tax, unpaid time, benefits, equipment, insurance, and bench time.
   - **Name the sources** for the user's specific role: Levels.fyi (tech), Glassdoor, Payscale, Robert Half guides, BLS OEWS, industry-specific (e.g., AAUP for academia, Bureau of Labor Statistics for federal, BuiltIn for startups).
   - **For role pivots:** acknowledge typical pivot pay tradeoffs (e.g., senior eng → APM is often a step down in cash, sometimes a step up in equity). Encourage 2–5 year framing rather than year-1 framing.
   - **For freelance ↔ FTE transitions:** do the total-comp math. FTE = base + bonus + equity + benefits (health, retirement match, paid time off, payroll tax employer-paid portion). Freelance = gross rate × billable hours – self-employment tax – unpaid time – benefits cost. The gap is rarely what the headline numbers suggest.
@@ -393,6 +395,15 @@ target_industries: []
 industry_classifications: []
 transferable_skills: []
 employment_type_recommendations: []
+compensation_preferences:
+  annual_salary_min: null
+  annual_salary_target: null
+  annual_salary_max: null
+  hourly_rate_min: null
+  hourly_rate_target: null
+  hourly_rate_max: null
+  hourly_rate_basis: ""
+  notes: ""
 geographic_preferences:
   remote: null
   hybrid: null
@@ -423,6 +434,8 @@ evidence_gaps: []
 
 Rules:
 - Treat the export as advisory, not canonical fact.
+- If contract, freelance, fractional, advisory, or other non-salary engagement types are recommended, populate `compensation_preferences.hourly_rate_min`, `hourly_rate_target`, and `hourly_rate_max` when the user supplied them. If they are missing, leave them `null` and explain in `compensation_preferences.notes` that Engagement Stack should interview for them.
+- Use `hourly_rate_basis` to describe assumptions such as W2 contract, 1099, corp-to-corp, retainer-equivalent, expected billable hours, or whether the rates account for benefits, taxes, unpaid time, equipment, insurance, and bench time.
 - Put possible role-, industry-, platform-, or job-description-specific resume shaping into `resume_shader_recommendations`.
 - Every shader recommendation must include a human-readable `description` and `rationale`, not just keywords.
 - Use `slug` as the proposed filename stem for an Engagement Stack shader, for example `ai-platform-engineer`.

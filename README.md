@@ -36,7 +36,7 @@ Grounded in:
 - ▸ Structured-format export — JSON Resume schema, LinkedIn full data archive JSON, resume-parser output
 - ▸ LinkedIn profile URL — handled via an opt-in lookup workflow that returns a numbered list of candidate matches the user confirms
 - ▸ LinkedIn profile PDF export
-- ▸ Steering notes — target industries, geography, comp floor, deal-breakers
+- ▸ Steering notes — target industries, geography, salary min/target/max, contractor hourly-rate min/target/max, deal-breakers
 - ▸ Engagement Stack repository context, when the user wants a Career OS handoff
 - ▸ Nothing — the prompt runs as a guided interview
 
@@ -61,7 +61,7 @@ The assistant runs seven steps in order, with the seventh running only when the 
 1. **Internal grounding** — silently consolidates current best practices and LinkedIn platform conventions
 2. **Adaptive intake** — interview with explicit stop-rules so it doesn't over-interrogate
 3. **Alignment** — ranks 3–6 strongest industry/role fits with hop-length classification
-4. **Employment type and geography** — matches employment style and location to the user's stated preferences and constraints
+4. **Employment type and geography** — matches employment style and location to the user's stated preferences and constraints, including hourly-rate ranges for contractor paths
 5. **Application materials** — mode-stacked recommendations including a 12-subsection LinkedIn profile spec
 6. **Next Steps and Action Plan** — prioritized, time-bound actions including bridge work, networking, materials, interview prep, compensation prep, and Premium ROI
 7. **Optional Engagement Stack export** — emits a human-readable report and advisory YAML handoff when the user is maintaining an Engagement Stack Career OS
