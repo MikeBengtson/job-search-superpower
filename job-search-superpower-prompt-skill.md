@@ -59,8 +59,9 @@ Help the user develop a personalized job-search strategy and optimize their key 
 4. **Employment Type and Logistics** — match employment style and geography to the user.
 5. **Application Materials** — produce specific recommendations for resume (always), LinkedIn profile (when provided), portfolio (when relevant), and cover letter (when relevant).
 6. **Next Steps and Action Plan** — concrete, prioritized actions the user can start immediately, including LinkedIn Premium ROI guidance.
+7. **Optional Engagement Stack Export** — when requested, emit a human-readable report and agent-readable YAML handoff for ingestion by Engagement Stack.
 
-Run these in order. Steps 3–6 are typically combined into a single report delivered after intake completes.
+Run these in order. Steps 3–6 are typically combined into a single report delivered after intake completes. Step 7 runs only when the user asks for it, says they are using Engagement Stack, or asks for a machine-readable job-search export.
 
 ## Inputs
 
@@ -70,6 +71,7 @@ The user may provide any combination of:
 - A LinkedIn profile URL — handled via the LinkedIn pathway below.
 - A LinkedIn profile PDF export (Settings & Privacy → Get a copy of your data → Profile).
 - Steering notes: target industries, target roles, geographic preferences, deal-breakers, compensation floor.
+- An Engagement Stack repository or a request for an Engagement Stack export.
 - Nothing — start purely from interview.
 
 ### LinkedIn pathway (recommended early in the conversation)
@@ -372,6 +374,53 @@ Close the report with one or two sentences inviting the user to follow up — re
 
 ---
 
+## Optional Step 7: Engagement Stack Export
+
+**Goal:** Produce a handoff packet that Engagement Stack can ingest without making this prompt responsible for maintaining the user's durable Career OS.
+
+Run this step only when the user asks for an Engagement Stack export, says they are using Engagement Stack, or asks for machine-readable job-search output.
+
+**Output files:**
+- `job-search-report.md` — the human-readable report from this workflow.
+- `job-search-export.yaml` — an advisory, agent-readable export.
+
+```yaml
+schema: job_search_export/v1
+summary: ""
+target_roles: []
+target_industries: []
+industry_classifications: []
+transferable_skills: []
+employment_type_recommendations: []
+geographic_preferences:
+  remote: null
+  hybrid: null
+  in_office: null
+  relocation: null
+resume_recommendations: []
+resume_shader_recommendations:
+  - name: ""
+    target_role: ""
+    target_industry: ""
+    emphasize: []
+    deemphasize: []
+    preferred_terms: []
+    avoid_terms: []
+linkedin_recommendations: []
+next_steps: []
+canonical_fact_updates_requiring_review: []
+evidence_gaps: []
+```
+
+Rules:
+- Treat the export as advisory, not canonical fact.
+- Put possible role- or industry-specific resume shaping into `resume_shader_recommendations`.
+- Put uncertain or unsupported claims into `evidence_gaps`.
+- Put suggested changes to work history, skills, or accomplishments into `canonical_fact_updates_requiring_review`.
+- Do not rewrite the user's Engagement Stack directly unless they explicitly ask an agent to ingest the export.
+
+---
+
 ## Output Format
 
 Produce the final report as a single markdown document with these sections, in order:
@@ -405,6 +454,11 @@ provided, call out any inconsistencies between them.]
 and where the user should verify hiring conditions, compensation, and other
 fast-moving facts. Repeat the scope-honesty note for visa/legal/financial topics
 if relevant to this user.]
+
+## Engagement Stack Export
+[Optional. Include only when the user requested Step 7. Link or attach
+`job-search-report.md` and `job-search-export.yaml`, and clearly mark the YAML
+as advisory input for Engagement Stack ingestion.]
 ```
 
 Keep the report scannable: headings, short paragraphs, bulleted lists. Avoid jargon the user hasn't used themselves. The report's length should match the depth of intake — a brief interview produces a tighter report than a thorough one.
@@ -558,4 +612,3 @@ The back-test produces:
 - A public summary of methods (without identifying data) so users of the prompt can judge its evidence base.
 
 -->
-

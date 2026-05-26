@@ -19,6 +19,7 @@ What it covers:
 - ▸ Portfolio and cover-letter strategy
 - ▸ Prioritized action plan with role-family-specific interview prep and compensation math
 - ▸ Honest LinkedIn Premium vs. free ROI guidance
+- ▸ Optional Engagement Stack export for Career OS ingestion
 
 Grounded in:
 
@@ -35,6 +36,7 @@ Grounded in:
 - ▸ LinkedIn profile URL — handled via an opt-in lookup workflow that returns a numbered list of candidate matches the user confirms
 - ▸ LinkedIn profile PDF export
 - ▸ Steering notes — target industries, geography, comp floor, deal-breakers
+- ▸ Engagement Stack repository context, when the user wants a Career OS handoff
 - ▸ Nothing — the prompt runs as a guided interview
 
 When both a resume and LinkedIn are provided, the prompt uses both and explicitly flags any inconsistencies between them.
@@ -47,12 +49,13 @@ When both a resume and LinkedIn are provided, the prompt uses both and explicitl
 - ▸ Application Materials — resume + LinkedIn + portfolio + cover letter, mode-stacked based on what the user provided
 - ▸ Next Steps and Action Plan
 - ▸ Sources and Caveats
+- ▸ Optional Engagement Stack export — `job-search-report.md` plus `job-search-export.yaml`
 
 The report is scannable — short paragraphs, bulleted lists, drafted text rather than abstract advice — and its length scales to the depth of intake.
 
 ## → How it works
 
-The assistant runs six steps in order:
+The assistant runs seven steps in order, with the seventh running only when the user wants an Engagement Stack handoff:
 
 1. **Internal grounding** — silently consolidates current best practices and LinkedIn platform conventions
 2. **Adaptive intake** — interview with explicit stop-rules so it doesn't over-interrogate
@@ -60,6 +63,7 @@ The assistant runs six steps in order:
 4. **Employment type and geography** — matches employment style and location to the user's stated preferences and constraints
 5. **Application materials** — mode-stacked recommendations including a 12-subsection LinkedIn profile spec
 6. **Next Steps and Action Plan** — prioritized, time-bound actions including bridge work, networking, materials, interview prep, compensation prep, and Premium ROI
+7. **Optional Engagement Stack export** — emits a human-readable report and advisory YAML handoff when the user is maintaining an Engagement Stack Career OS
 
 The file also contains an inactive **Further Refinement** section — wrapped in HTML comments, ready to activate when sanctioned LinkedIn data access becomes available — specifying:
 
@@ -68,6 +72,17 @@ The file also contains an inactive **Further Refinement** section — wrapped in
 - ▸ Randomized A/B testing of the prompt's own recommendations
 - ▸ Disparate-impact auditing
 - ▸ Mapping of every finding back to a named section of the prompt with a versioned changelog
+
+---
+
+## → Engagement Stack handoff
+
+When the user maintains an Engagement Stack Career OS, this prompt can emit an advisory handoff packet:
+
+- ▸ `job-search-report.md` — the human-readable strategy report
+- ▸ `job-search-export.yaml` — target roles, industries, employment preferences, resume recommendations, LinkedIn recommendations, evidence gaps, and resume-shader recommendations
+
+Engagement Stack can ingest that packet after user review, keeping the job-search prompt as the strategy surface and Engagement Stack as the durable source of truth.
 
 ---
 
@@ -82,6 +97,7 @@ The file also contains an inactive **Further Refinement** section — wrapped in
 - ✓ Covers 21 role families with industry-specific tuning
 - ✓ Includes honest Premium-vs-free ROI guidance
 - ✓ Title-integrity, freelance-consolidation, and disparate-impact guardrails
+- ✓ Optional Engagement Stack export handoff for Career OS workflows
 - ✗ Not legal, financial, immigration, or licensed career advice — flagged in-prompt
 - ✗ Hiring-trend data is approximate — users directed to authoritative sources to verify
 
